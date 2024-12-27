@@ -6,7 +6,7 @@ public class CupController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        speed = 900;
+        speed = 35;
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class CupController : MonoBehaviour
         //find new position
         Vector3 newPosition = transform.localPosition + Vector3.right * Time.deltaTime * input * speed;
         //clamp position to ensure it stays in bounds
-        newPosition.x = Mathf.Clamp(newPosition.x, -387.5f, 387.5f);
+        newPosition.x = Mathf.Clamp(newPosition.x, -15.7f, 15.7f);
         //set position to equal new calculated and clamped position
         transform.localPosition = newPosition;
     }
