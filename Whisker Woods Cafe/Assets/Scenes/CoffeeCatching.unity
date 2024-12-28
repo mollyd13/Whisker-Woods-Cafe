@@ -537,7 +537,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d947be0d34844fcea0ee4e40d811dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drop: {fileID: 5775858883209540751, guid: 55b70df15790f42c588239708a8e929b, type: 3}
+  drops:
+  - {fileID: 5775858883209540751, guid: 55b70df15790f42c588239708a8e929b, type: 3}
+  - {fileID: 5775858883209540751, guid: d4ec49acd74a74a149432619c02fce67, type: 3}
 --- !u!4 &1511373961
 Transform:
   m_ObjectHideFlags: 0

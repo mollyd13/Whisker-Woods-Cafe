@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2894278096815335631}
   - component: {fileID: 6834172311808098952}
   m_Layer: 0
-  m_Name: Drop
+  m_Name: CoffeeDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

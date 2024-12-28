@@ -4,7 +4,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
 
-    public GameObject drop;
+    public GameObject[] drops;
     Camera mainCamera;
     Vector3 leftScreen;
     Vector3 rightScreen;
@@ -20,6 +20,7 @@ public class SpawnManager : MonoBehaviour
 
     // Update is called once per frame
     void Spawn() {
-        Instantiate(drop, new Vector3(Random.Range(leftScreen.x+.5f, rightScreen.x-.5f), gameObject.transform.position.y, 0), gameObject.transform.rotation, gameObject.transform);
+        int index = Random.Range(0, drops.Length);
+        Instantiate(drops[index], new Vector3(Random.Range(leftScreen.x+.5f, rightScreen.x-.5f), gameObject.transform.position.y, 0), gameObject.transform.rotation, gameObject.transform);
     }
 }
