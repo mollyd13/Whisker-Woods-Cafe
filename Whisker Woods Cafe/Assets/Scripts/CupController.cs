@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CupController : MonoBehaviour
@@ -33,5 +34,10 @@ public class CupController : MonoBehaviour
         newPosition.x = Mathf.Clamp(newPosition.x, leftScreen.x+.5f, rightScreen.x-.5f);
         //set position to equal new calculated and clamped position
         transform.localPosition = newPosition;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider){
+        Debug.Log("collided");
+        Destroy(collider.gameObject);
     }
 }
