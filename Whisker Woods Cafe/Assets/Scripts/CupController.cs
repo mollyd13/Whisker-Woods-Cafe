@@ -7,9 +7,11 @@ public class CupController : MonoBehaviour
     Vector3 leftScreen;
     Vector3 rightScreen;
     Camera mainCamera;
+    private ScoreManager scoreManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        scoreManager = GameObject.Find("Score").GetComponent<ScoreManager>();
         //get left and right bounds of the viewport
         mainCamera = Camera.main;
         leftScreen = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, mainCamera.nearClipPlane));
@@ -39,5 +41,6 @@ public class CupController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider){
         Debug.Log("collided");
         Destroy(collider.gameObject);
+        scoreManager.increaseScore();
     }
 }
