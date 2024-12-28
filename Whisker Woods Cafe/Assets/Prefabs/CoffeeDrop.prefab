@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6834172311808098952}
   m_Layer: 0
   m_Name: CoffeeDrop
-  m_TagString: Untagged
+  m_TagString: coffee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -899848831, guid: af6a7ac4c92e74c6eae4903a677707dd, type: 3}
-  m_Color: {r: 0.3962264, g: 0.22988608, b: 0.22988608, a: 1}
+  m_Color: {r: 0.48235294, g: 0.34117648, b: 0.34117648, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

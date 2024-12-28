@@ -40,7 +40,7 @@ public class CupController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider){
         Debug.Log("collided");
+        scoreManager.increaseScore(collider.gameObject.tag);
         Destroy(collider.gameObject);
-        scoreManager.increaseScore();
     }
 }
