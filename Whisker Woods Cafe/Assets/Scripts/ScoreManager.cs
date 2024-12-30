@@ -7,18 +7,12 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] Slider coffeeSlider;
     [SerializeField] Slider milkSlider;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-    }
-
     public void increaseScore(string type) {
         if (type == "coffee"){
-            coffeeSlider.value += .25f;
+            coffeeSlider.value += .10f;
         }
         else {
-            milkSlider.value += .25f;
+            milkSlider.value += .10f;
         }
     }
 }
