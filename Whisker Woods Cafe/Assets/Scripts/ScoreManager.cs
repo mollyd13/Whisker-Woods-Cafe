@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,5 +15,9 @@ public class ScoreManager : MonoBehaviour
         else {
             milkSlider.value += .10f;
         }
+    }
+
+    public Tuple<float,float> getSliderVal() {
+        return new Tuple<float, float>(coffeeSlider.value, milkSlider.value);
     }
 }

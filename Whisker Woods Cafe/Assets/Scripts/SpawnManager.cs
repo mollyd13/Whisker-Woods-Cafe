@@ -10,9 +10,11 @@ public class SpawnManager : MonoBehaviour
     Vector3 rightScreen;
     [SerializeField] int milkDropCount;
     [SerializeField] int coffeeDropCount;
+    private GameManager gameManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         //initialize milk and coffee drop counts
         milkDropCount = 0;
         coffeeDropCount = 0;
@@ -29,6 +31,7 @@ public class SpawnManager : MonoBehaviour
         //if all drops have been dropped cancel the call to Spawn and return
         if (coffeeDropCount == 10 && milkDropCount == 10){
             CancelInvoke();
+            gameManager.GameOver();
             return;
         }
         //if enough coffee has been dropped, only drop milk
