@@ -18,4 +18,8 @@ public class SceneManager : MonoBehaviour
     public void StartMinigame(string gameName){
         UnityEngine.SceneManagement.SceneManager.LoadScene(gameName);
     }
+
+    public void BackToCounter(){
+        UnityEngine.SceneManagement.SceneManager.LoadScene("BehindCounter");
+    }
 }
