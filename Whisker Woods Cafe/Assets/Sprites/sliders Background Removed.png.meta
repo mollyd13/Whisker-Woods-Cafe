@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sliders Background Removed_0: 5362591741757868404
+      sliders Background Removed_1: -7686013855205245220
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
