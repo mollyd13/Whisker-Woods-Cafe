@@ -62,7 +62,7 @@ public class MatchingManager : MonoBehaviour
 
     public void AssignCards(){
         colors = new Color[]{Color.red,
-         Color.white,
+        Color.white,
         Color.black, 
         Color.blue, 
         Color.green, 

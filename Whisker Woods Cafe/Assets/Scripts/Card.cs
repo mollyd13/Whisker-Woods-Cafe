@@ -20,7 +20,9 @@ public class Card : MonoBehaviour
     }
 
     public void RevealCard(){
-        cover.SetActive(false);
-        matchingManager.FlipCard(gameObject);
+        if (cover.activeSelf){
+            cover.SetActive(false);
+            matchingManager.FlipCard(gameObject);
+        }
     }
 }
