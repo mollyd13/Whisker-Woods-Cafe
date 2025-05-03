@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
@@ -38,8 +39,7 @@ public class MatchingManager : MonoBehaviour
             Debug.Log("Yay!");
         }
         else{
-            flippedCards[0].GetComponent<Card>().cover.SetActive(true);
-            flippedCards[1].GetComponent<Card>().cover.SetActive(true);
+            StartCoroutine("FlipDelay");
         }
         flippedCount = 0;
         flippedCards = new List<GameObject>();
@@ -79,5 +79,13 @@ public class MatchingManager : MonoBehaviour
             colorIndex++;
         }
 
+    }
+
+    public IEnumerator FlipDelay() {
+        GameObject card1 = flippedCards[0];
+        GameObject card2 = flippedCards[1];
+        yield return new WaitForSeconds(0.5f);
+        card1.GetComponent<Card>().cover.SetActive(true);
+        card2.GetComponent<Card>().cover.SetActive(true);
     }
 }
