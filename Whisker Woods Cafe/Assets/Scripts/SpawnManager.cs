@@ -57,6 +57,7 @@ public class SpawnManager : MonoBehaviour
             }
         }
         //spawn specified prefab at a random x position above the viewport as a child of SpawnManager GO
-        Instantiate(drops[index], new Vector3(Random.Range(leftScreen.x+.5f, rightScreen.x-.5f), gameObject.transform.position.y, 0), gameObject.transform.rotation, gameObject.transform);
+        GameObject drop = (GameObject)Instantiate(drops[index], new Vector3(Random.Range(leftScreen.x+.5f, rightScreen.x-.5f), gameObject.transform.position.y, 0), gameObject.transform.rotation, gameObject.transform);
+        drop.GetComponent<Rigidbody2D>().gravityScale = (float)((milkDropCount + coffeeDropCount)*.15);
     }
 }
