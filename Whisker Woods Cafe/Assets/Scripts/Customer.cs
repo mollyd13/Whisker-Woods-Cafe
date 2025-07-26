@@ -10,6 +10,9 @@ public class Customer : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
     public string[] lines;
+    public string iLikeIt;
+    public string iDontLikeIt;
+    public string minigame;
     public float textSpeed;
 
     private int index;
@@ -17,6 +20,7 @@ public class Customer : MonoBehaviour
     public Sprite[] characterSprites;
     private int charIndex;
     private SceneManager sm;
+    private BehindCounterManager bcm;
     public bool minigameComplete;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,10 +28,10 @@ public class Customer : MonoBehaviour
     {
         minigameComplete = false;
         sm = GameObject.Find("SceneManager").GetComponent<SceneManager>();
+        bcm = GameObject.Find("BehindCounterManager").GetComponent<BehindCounterManager>();
         sr = GetComponent<SpriteRenderer>();
         charIndex = 0;
         textComponent.text = string.Empty;
-        StartDialogue();
     }
 
     // Update is called once per frame
@@ -44,16 +48,20 @@ public class Customer : MonoBehaviour
         }
     }
 
-    void StartDialogue() {
-        if (PlayerPrefs.HasKey("CoffeeCatchingScore")){
+    public void StartDialogue() {
+        if (PlayerPrefs.HasKey(minigame + "Score")){
             minigameComplete = true;
-            Debug.Log("CoffeeCatchingScore exists: " + PlayerPrefs.GetFloat("CoffeeCatchingScore"));
-            lines = new string[] {
-                "I hate it"
-            };
-            PlayerPrefs.DeleteKey("CoffeeCatchingScore");
+            if (PlayerPrefs.GetFloat(minigame + "Score") >= 15){
+                lines = new string[] {iLikeIt};
+            }
+            else {
+                lines = new string[] {iDontLikeIt};
+            }
+            PlayerPrefs.DeleteKey(minigame + "Score");
         }
         index = 0;
+        StopAllCoroutines();
+        textComponent.text = String.Empty;
         StartCoroutine(TypeLine());
     }
 
@@ -75,10 +83,10 @@ public class Customer : MonoBehaviour
         }
         else {
             if (minigameComplete){
-                sm.BackToCounter();
+                bcm.NextCustomer();
             }
             else {
-                sm.StartMinigame("CoffeeCatching");
+                sm.StartMinigame(minigame);
             }
         }
     }

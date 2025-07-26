@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BehindCounterManager : MonoBehaviour
@@ -7,7 +8,13 @@ public class BehindCounterManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        StartCoroutine(StartDialogueAfterInit());
+    }
+
+    IEnumerator StartDialogueAfterInit()
+    {
+        yield return null; // Wait one frame to ensure all Start() methods have run
+        customers[currCustomer].StartDialogue();
     }
 
     // Update is called once per frame
@@ -18,6 +25,12 @@ public class BehindCounterManager : MonoBehaviour
 
     public void NextCustomer()
     {
-        
+        customers[currCustomer].gameObject.SetActive(false);
+        currCustomer++;
+        if (currCustomer < customers.Length)
+        {
+            customers[currCustomer].gameObject.SetActive(true);
+            StartCoroutine(StartDialogueAfterInit());
+        }
     }
 }
