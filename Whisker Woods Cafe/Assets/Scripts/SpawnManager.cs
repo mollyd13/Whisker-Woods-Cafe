@@ -10,11 +10,11 @@ public class SpawnManager : MonoBehaviour
     Vector3 rightScreen;
     [SerializeField] int milkDropCount;
     [SerializeField] int coffeeDropCount;
-    private GameManager gameManager;
+    private CoffeeCatchingManager gameManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<CoffeeCatchingManager>();
         //initialize milk and coffee drop counts
         milkDropCount = 0;
         coffeeDropCount = 0;

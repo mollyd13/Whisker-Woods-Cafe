@@ -4,6 +4,7 @@ using System.Collections;
 using NUnit.Framework.Internal;
 using UnityEngine.UI;
 using UnityEditor.SearchService;
+using System;
 
 public class Customer : MonoBehaviour
 {
@@ -16,10 +17,12 @@ public class Customer : MonoBehaviour
     public Sprite[] characterSprites;
     private int charIndex;
     private SceneManager sm;
+    public bool minigameComplete;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        minigameComplete = false;
         sm = GameObject.Find("SceneManager").GetComponent<SceneManager>();
         sr = GetComponent<SpriteRenderer>();
         charIndex = 0;
@@ -42,6 +45,14 @@ public class Customer : MonoBehaviour
     }
 
     void StartDialogue() {
+        if (PlayerPrefs.HasKey("CoffeeCatchingScore")){
+            minigameComplete = true;
+            Debug.Log("CoffeeCatchingScore exists: " + PlayerPrefs.GetFloat("CoffeeCatchingScore"));
+            lines = new string[] {
+                "I hate it"
+            };
+            PlayerPrefs.DeleteKey("CoffeeCatchingScore");
+        }
         index = 0;
         StartCoroutine(TypeLine());
     }
@@ -63,8 +74,12 @@ public class Customer : MonoBehaviour
             NextCharSprite();
         }
         else {
-            sm.StartMinigame("CoffeeCatching");
-            // gameObject.SetActive(false);
+            if (minigameComplete){
+                sm.BackToCounter();
+            }
+            else {
+                sm.StartMinigame("CoffeeCatching");
+            }
         }
     }
 
