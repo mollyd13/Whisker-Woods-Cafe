@@ -3,11 +3,21 @@ using UnityEngine;
 
 public class BehindCounterManager : MonoBehaviour
 {
-    [SerializeField] Customer[] customers = new Customer[1];
-    [SerializeField] int currCustomer = 0;
+    [SerializeField] Customer[] customers = new Customer[2];
+    [SerializeField] int currCustomer=0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("behindCounterManager");
+
+        if (objs.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+        PlayerPrefs.DeleteAll();
+        customers[currCustomer].gameObject.SetActive(true);
         StartCoroutine(StartDialogueAfterInit());
     }
 

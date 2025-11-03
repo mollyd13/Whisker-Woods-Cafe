@@ -19,11 +19,18 @@ public class CoffeeCatchingManager : MonoBehaviour
         
     }
 
-    public void GameOver() {
+    public void GameOver()
+    {
         Tuple<float, float> score = scoreManager.getSliderVal();
         gameOverScreen.SetActive(true);
-        gameOverScreen.GetComponentInChildren<TextMeshProUGUI>().text = "Coffee caught:\n" + (int)(score.Item1*100) + "%\n" + "Milk caught:\n" + (int)(score.Item2 * 100) + "%";
+        gameOverScreen.GetComponentInChildren<TextMeshProUGUI>().text = "Coffee caught:\n" + (int)(score.Item1 * 100) + "%\n" + "Milk caught:\n" + (int)(score.Item2 * 100) + "%";
         PlayerPrefs.SetFloat("CoffeeCatchingScore", (score.Item1 + score.Item2) * 10);
         Debug.Log(PlayerPrefs.GetFloat("CoffeeCatchingScore"));
+    }
+    
+    public void devSkip()
+    {
+        PlayerPrefs.SetFloat("CoffeeCatchingScore", 15);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("BehindCounter");
     }
 }

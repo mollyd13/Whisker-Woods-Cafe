@@ -6,6 +6,7 @@ TagManager:
   tags:
   - coffee
   - milk
+  - behindCounterManager
   layers:
   - Default
   - TransparentFX
