@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MatchingManager : MonoBehaviour
 {
     public GameObject[] cards;
-    public Color[] colors;
+    public Sprite[] colors;
     public int flippedCount;
     public int pairsFound;
     public List<GameObject> flippedCards;
@@ -47,7 +48,7 @@ public class MatchingManager : MonoBehaviour
     }
 
     public void CheckCards(){
-        if (flippedCards[0].GetComponent<UnityEngine.UI.Image>().color == flippedCards[1].GetComponent<UnityEngine.UI.Image>().color){
+        if (flippedCards[0].GetComponent<UnityEngine.UI.Image>().sprite == flippedCards[1].GetComponent<UnityEngine.UI.Image>().sprite){
             CheckWin();
         }
         else{
@@ -73,21 +74,11 @@ public class MatchingManager : MonoBehaviour
     }
 
     public void AssignCards(){
-        colors = new Color[]{Color.red,
-        Color.white,
-        Color.black, 
-        Color.blue, 
-        Color.green, 
-        Color.yellow, 
-        Color.cyan, 
-        Color.magenta, 
-        Color.gray,
-        new Color(1f, 0.5f, 0f)};
 
         int colorIndex = 0;
         for (int i = 0; i < cards.Length; i+=2){
-            cards[i+1].GetComponent<UnityEngine.UI.Image>().color = colors[colorIndex];
-            cards[i].GetComponent<UnityEngine.UI.Image>().color = colors[colorIndex];
+            cards[i+1].GetComponent<UnityEngine.UI.Image>().sprite = colors[colorIndex];
+            cards[i].GetComponent<UnityEngine.UI.Image>().sprite = colors[colorIndex];
             colorIndex++;
         }
 
