@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<CoffeeCatchingManager>();
+        gameManager = GameObject.Find("CoffeeCatchingManager").GetComponent<CoffeeCatchingManager>();
         //initialize milk and coffee drop counts
         milkDropCount = 0;
         coffeeDropCount = 0;

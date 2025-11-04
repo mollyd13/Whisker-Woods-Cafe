@@ -109,15 +109,9 @@ public class MatchingManager : MonoBehaviour
         {
             CancelInvoke("IncrementTime");
             Debug.Log("You win!");
-            if (timeSec + timeMin * 60 <= 45)
-            {
-                PlayerPrefs.SetFloat("MatchingScore", 15);
-            }
-            else
-            {
-                PlayerPrefs.SetFloat("MatchingScore", 0);
-            }
-            PlayerPrefs.Save();
+            float scoreVal = (timeSec + timeMin * 60 <= 45) ? 15f : 0f;
+            // store score in the in-memory GameManager (assume it exists)
+            GameManager.Instance.SetScore("Matching", scoreVal);
             gameOverScreen.SetActive(true);
             gameOverScreen.GetComponentInChildren<TextMeshProUGUI>().text = "Time: " + timeMin.ToString() + ":" + (timeSec < 10 ? "0" : "") + timeSec.ToString();
         }
@@ -145,8 +139,7 @@ public class MatchingManager : MonoBehaviour
     
     public void devSkip()
     {
-        PlayerPrefs.SetFloat("MatchingScore", 15);
-        PlayerPrefs.Save();
+        GameManager.Instance.SetScore("Matching", 15f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("BehindCounter");
     }
 }

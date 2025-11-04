@@ -8,24 +8,28 @@ public class BehindCounterManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // If a minigame saved which customer started it, restore that index and clear the key
-        if (PlayerPrefs.HasKey("currCustomer"))
+        // ensure each Customer knows its index so they can save/restore themselves
+        for (int i = 0; i < customers.Length; i++)
         {
-            currCustomer = PlayerPrefs.GetInt("currCustomer", 0);
-            PlayerPrefs.DeleteKey("currCustomer");
+            customers[i].customerIndex = i;
+            // deactivate others to be safe; we'll activate the correct one below
+            customers[i].gameObject.SetActive(false);
+        }
+
+        // Restore the customer index from GameManager (in-memory). If not set, start at 0.
+        if (GameManager.Instance != null && GameManager.Instance.lastCustomerIndex >= 0)
+        {
+            currCustomer = GameManager.Instance.lastCustomerIndex;
+            GameManager.Instance.lastCustomerIndex = -1; // clear after restoring
         }
         else
         {
             currCustomer = 0;
         }
 
-        // ensure each Customer knows its index so they can save/restore themselves
-        for (int i = 0; i < customers.Length; i++)
-        {
-            customers[i].customerIndex = i;
-            // deactivate others to be safe
-            customers[i].gameObject.SetActive(i == currCustomer);
-        }
+        // activate only the current customer
+        if (currCustomer >= 0 && currCustomer < customers.Length)
+            customers[currCustomer].gameObject.SetActive(true);
 
         StartCoroutine(StartDialogueAfterInit());
     }
@@ -51,11 +55,5 @@ public class BehindCounterManager : MonoBehaviour
             customers[currCustomer].gameObject.SetActive(true);
             StartCoroutine(StartDialogueAfterInit());
         }
-    }
-
-
-    public void devClearPrefs()
-    {
-        PlayerPrefs.DeleteAll();
     }
 }

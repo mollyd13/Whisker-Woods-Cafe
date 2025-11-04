@@ -24,15 +24,14 @@ public class CoffeeCatchingManager : MonoBehaviour
         Tuple<float, float> score = scoreManager.getSliderVal();
         gameOverScreen.SetActive(true);
         gameOverScreen.GetComponentInChildren<TextMeshProUGUI>().text = "Coffee caught:\n" + (int)(score.Item1 * 100) + "%\n" + "Milk caught:\n" + (int)(score.Item2 * 100) + "%";
-        PlayerPrefs.SetFloat("CoffeeCatchingScore", (score.Item1 + score.Item2) * 10);
-        PlayerPrefs.Save();
-        Debug.Log(PlayerPrefs.GetFloat("CoffeeCatchingScore"));
+        float scoreVal = (score.Item1 + score.Item2) * 10f;
+        // store score in the in-memory GameManager (assume it exists)
+        GameManager.Instance.SetScore("CoffeeCatching", scoreVal);
     }
     
     public void devSkip()
     {
-        PlayerPrefs.SetFloat("CoffeeCatchingScore", 15);
-        PlayerPrefs.Save();
+        GameManager.Instance.SetScore("CoffeeCatching", 15f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("BehindCounter");
     }
 }

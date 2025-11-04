@@ -988,7 +988,7 @@ GameObject:
   - component: {fileID: 856474466}
   - component: {fileID: 856474465}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: CoffeeCatchingManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

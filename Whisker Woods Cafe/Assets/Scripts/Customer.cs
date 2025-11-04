@@ -49,16 +49,18 @@ public class Customer : MonoBehaviour
     }
 
     public void StartDialogue() {
-        if (PlayerPrefs.HasKey(minigame + "Score")){
-            Debug.Log("Minigame score found");
+        // Check in-memory GameManager for a score saved by a minigame
+        if (GameManager.Instance != null && GameManager.Instance.TryGetScore(minigame, out float score))
+        {
+            Debug.Log("Minigame score found in GameManager: " + score);
             minigameComplete = true;
-            if (PlayerPrefs.GetFloat(minigame + "Score") >= 15){
+            if (score >= 15){
                 lines = new string[] {iLikeIt};
             }
             else {
                 lines = new string[] {iDontLikeIt};
             }
-            PlayerPrefs.DeleteKey(minigame + "Score");
+            GameManager.Instance.ClearScore(minigame);
         }
         index = 0;
         StopAllCoroutines();
@@ -87,9 +89,8 @@ public class Customer : MonoBehaviour
                 bcm.NextCustomer();
             }
             else {
-                // save which customer started the minigame so we can restore them after the scene reloads
-                PlayerPrefs.SetInt("currCustomer", customerIndex);
-                PlayerPrefs.Save();
+                // save which customer started the minigame in GameManager so we can restore them after the scene reloads
+                GameManager.Instance.lastCustomerIndex = customerIndex;
                 sm.StartMinigame(minigame);
             }
         }
@@ -99,10 +100,5 @@ public class Customer : MonoBehaviour
     {
         charIndex++;
         sr.sprite = characterSprites[charIndex];
-    }
-    
-    public void devClearPrefs()
-    {
-        PlayerPrefs.DeleteAll();
     }
 }
