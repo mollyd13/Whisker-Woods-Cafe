@@ -25,12 +25,14 @@ public class CoffeeCatchingManager : MonoBehaviour
         gameOverScreen.SetActive(true);
         gameOverScreen.GetComponentInChildren<TextMeshProUGUI>().text = "Coffee caught:\n" + (int)(score.Item1 * 100) + "%\n" + "Milk caught:\n" + (int)(score.Item2 * 100) + "%";
         PlayerPrefs.SetFloat("CoffeeCatchingScore", (score.Item1 + score.Item2) * 10);
+        PlayerPrefs.Save();
         Debug.Log(PlayerPrefs.GetFloat("CoffeeCatchingScore"));
     }
     
     public void devSkip()
     {
         PlayerPrefs.SetFloat("CoffeeCatchingScore", 15);
+        PlayerPrefs.Save();
         UnityEngine.SceneManagement.SceneManager.LoadScene("BehindCounter");
     }
 }

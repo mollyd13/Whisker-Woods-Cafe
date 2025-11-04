@@ -117,6 +117,7 @@ public class MatchingManager : MonoBehaviour
             {
                 PlayerPrefs.SetFloat("MatchingScore", 0);
             }
+            PlayerPrefs.Save();
             gameOverScreen.SetActive(true);
             gameOverScreen.GetComponentInChildren<TextMeshProUGUI>().text = "Time: " + timeMin.ToString() + ":" + (timeSec < 10 ? "0" : "") + timeSec.ToString();
         }
@@ -145,6 +146,7 @@ public class MatchingManager : MonoBehaviour
     public void devSkip()
     {
         PlayerPrefs.SetFloat("MatchingScore", 15);
+        PlayerPrefs.Save();
         UnityEngine.SceneManagement.SceneManager.LoadScene("BehindCounter");
     }
 }

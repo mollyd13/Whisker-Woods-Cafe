@@ -14,6 +14,7 @@ public class Customer : MonoBehaviour
     public string iDontLikeIt;
     public string minigame;
     public float textSpeed;
+    public int customerIndex = 0;
 
     private int index;
     private SpriteRenderer sr;
@@ -21,12 +22,11 @@ public class Customer : MonoBehaviour
     private int charIndex;
     private SceneManager sm;
     private BehindCounterManager bcm;
-    public bool minigameComplete;
+    public bool minigameComplete = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        minigameComplete = false;
         sm = GameObject.Find("SceneManager").GetComponent<SceneManager>();
         bcm = GameObject.Find("BehindCounterManager").GetComponent<BehindCounterManager>();
         sr = GetComponent<SpriteRenderer>();
@@ -50,6 +50,7 @@ public class Customer : MonoBehaviour
 
     public void StartDialogue() {
         if (PlayerPrefs.HasKey(minigame + "Score")){
+            Debug.Log("Minigame score found");
             minigameComplete = true;
             if (PlayerPrefs.GetFloat(minigame + "Score") >= 15){
                 lines = new string[] {iLikeIt};
@@ -86,13 +87,22 @@ public class Customer : MonoBehaviour
                 bcm.NextCustomer();
             }
             else {
+                // save which customer started the minigame so we can restore them after the scene reloads
+                PlayerPrefs.SetInt("currCustomer", customerIndex);
+                PlayerPrefs.Save();
                 sm.StartMinigame(minigame);
             }
         }
     }
 
-    void NextCharSprite() {
+    void NextCharSprite()
+    {
         charIndex++;
         sr.sprite = characterSprites[charIndex];
+    }
+    
+    public void devClearPrefs()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }
