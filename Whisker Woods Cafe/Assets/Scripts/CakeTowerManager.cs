@@ -8,6 +8,10 @@ public class CakeTowerManager : MonoBehaviour
   [SerializeField] private Transform blockHolder;
 
   [SerializeField] private TMPro.TextMeshProUGUI livesText;
+  [SerializeField] private TMPro.TextMeshProUGUI winText; // Optional, if you want to show "You Win!"
+  private int cakesPlaced = 0;
+  private int cakesToWin = 6;
+
 
   private Transform currentBlock = null;
   private Rigidbody2D currentRigidbody;
@@ -32,15 +36,18 @@ public class CakeTowerManager : MonoBehaviour
     livesText.text = $"{livesRemaining}";
     SpawnNewBlock();
   }
+  public void CakePlaced()
+  {
+      if (!playing) return;
 
-  private void SpawnNewBlock() {
-    // Create a block with the desired properties.
-    currentBlock = Instantiate(blockPrefab, blockHolder);
-    currentBlock.position = blockStartPosition;
-    currentBlock.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
-    currentRigidbody = currentBlock.GetComponent<Rigidbody2D>();
-    // Increase the block speed each time to make it harder.
-    blockSpeed += blockSpeedIncrement;
+      cakesPlaced++;
+
+      if (cakesPlaced >= cakesToWin)
+      {
+          playing = false;
+          winText.text = "You Win!";
+          Debug.Log("You Win!");
+      }
   }
 
   private IEnumerator DelayedSpawn() {
@@ -80,13 +87,24 @@ public class CakeTowerManager : MonoBehaviour
   }
 
   // Called from LoseLife whenever it detects a block has fallen off.
-  public void RemoveLife() {
+  public void RemoveLife()
+  {
     // Update the lives remaining UI element.
     livesRemaining = Mathf.Max(livesRemaining - 1, 0);
     livesText.text = $"{livesRemaining}";
     // Check for end of game.
-    if (livesRemaining == 0) {
+    if (livesRemaining == 0)
+    {
       playing = false;
     }
   }
+  private void SpawnNewBlock() {
+    if (!playing) return;  // Don’t spawn new cakes after winning or losing
+    currentBlock = Instantiate(blockPrefab, blockHolder);
+    currentBlock.position = blockStartPosition;
+    currentBlock.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
+    currentRigidbody = currentBlock.GetComponent<Rigidbody2D>();
+    blockSpeed += blockSpeedIncrement;
+}
+
 }
