@@ -22,4 +22,8 @@ public class SceneManager : MonoBehaviour
     public void BackToCounter(){
         UnityEngine.SceneManagement.SceneManager.LoadScene("BehindCounter");
     }
+
+    public void QuitGame(){
+        Application.Quit();
+    }
 }
