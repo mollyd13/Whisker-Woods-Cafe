@@ -1416,7 +1416,7 @@ MonoBehaviour:
   - latte
   iLikeIt: woohoo
   iDontLikeIt: yucky
-  minigame: Matching
+  minigame: CakeTower
   textSpeed: 0.05
   customerIndex: 0
   characterSprites:

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class CakeTowerManager : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class CakeTowerManager : MonoBehaviour
   [SerializeField] private Transform blockHolder;
 
   [SerializeField] private TMPro.TextMeshProUGUI livesText;
-  [SerializeField] private TMPro.TextMeshProUGUI winText; // Optional, if you want to show "You Win!"
+  [SerializeField] private GameObject winText; // Optional, if you want to show "You Win!"
+  [SerializeField] private GameObject loseText;
   private int cakesPlaced = 0;
   private int cakesToWin = 6;
 
@@ -44,8 +46,10 @@ public class CakeTowerManager : MonoBehaviour
 
       if (cakesPlaced >= cakesToWin)
       {
+          int scoreVal = 15;
+          GameManager.Instance.SetScore("CakeTower", scoreVal);
           playing = false;
-          winText.text = "You Win!";
+          winText.SetActive(true);
           Debug.Log("You Win!");
       }
   }
@@ -95,6 +99,9 @@ public class CakeTowerManager : MonoBehaviour
     // Check for end of game.
     if (livesRemaining == 0)
     {
+      int scoreVal = 0;
+      GameManager.Instance.SetScore("CakeTower", scoreVal);
+      loseText.SetActive(true);
       playing = false;
     }
   }
@@ -102,7 +109,7 @@ public class CakeTowerManager : MonoBehaviour
     if (!playing) return;  // Don’t spawn new cakes after winning or losing
     currentBlock = Instantiate(blockPrefab, blockHolder);
     currentBlock.position = blockStartPosition;
-    currentBlock.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
+    currentBlock.GetComponent<SpriteRenderer>().color = UnityEngine.Random.ColorHSV();
     currentRigidbody = currentBlock.GetComponent<Rigidbody2D>();
     blockSpeed += blockSpeedIncrement;
 }
