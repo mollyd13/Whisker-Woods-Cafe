@@ -13,6 +13,7 @@ TagManager:
   - DontDestroy
   - alien
   - detective
+  - pink
   layers:
   - Default
   - TransparentFX

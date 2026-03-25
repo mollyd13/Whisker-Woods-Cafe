@@ -15,7 +15,6 @@ public class Customer : MonoBehaviour
     public string minigame;
     public float textSpeed;
     public int customerIndex = 0;
-
     private int index;
     private SpriteRenderer sr;
     public Sprite[] characterSprites;
