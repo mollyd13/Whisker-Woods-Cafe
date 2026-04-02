@@ -6,6 +6,7 @@ public class CakeTowerManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
   [SerializeField] private Transform blockPrefab;
   [SerializeField] private Transform blockHolder;
+  [SerializeField] private Sprite[] cakeSprites;
 
   [SerializeField] private TMPro.TextMeshProUGUI livesText;
   [SerializeField] private TMPro.TextMeshProUGUI winText; // Optional, if you want to show "You Win!"
@@ -98,12 +99,30 @@ public class CakeTowerManager : MonoBehaviour
       playing = false;
     }
   }
-  private void SpawnNewBlock() {
-    if (!playing) return;  // Don’t spawn new cakes after winning or losing
+private void SpawnNewBlock() {
+    if (!playing) return;
+
     currentBlock = Instantiate(blockPrefab, blockHolder);
     currentBlock.position = blockStartPosition;
-    currentBlock.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
+
+    SpriteRenderer sr = currentBlock.GetComponent<SpriteRenderer>();
+    BoxCollider2D col = currentBlock.GetComponent<BoxCollider2D>();
     currentRigidbody = currentBlock.GetComponent<Rigidbody2D>();
+
+    if (cakeSprites.Length > 0)
+    {
+        // Pick random cake
+        Sprite randomSprite = cakeSprites[Random.Range(0, cakeSprites.Length)];
+        sr.sprite = randomSprite;
+
+        // Reset scale so no weird stretching carries over
+        currentBlock.localScale = Vector3.one * 2.5f;
+
+        // Match collider EXACTLY to sprite
+        col.size = sr.sprite.bounds.size;
+        col.offset = sr.sprite.bounds.center;
+    }
+
     blockSpeed += blockSpeedIncrement;
 }
 

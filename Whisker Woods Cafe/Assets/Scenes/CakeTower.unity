@@ -195,6 +195,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -446,6 +447,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockPrefab: {fileID: 6498705212474253799, guid: 57bca9e54cdc24d5b80a3787603cde86, type: 3}
   blockHolder: {fileID: 1883134736}
+  cakeSprites:
+  - {fileID: -6883477557990774325, guid: 5e0942b87a18b416ea531c0c6cb059c6, type: 3}
+  - {fileID: -1482781824323622985, guid: a93722765c7804df383a6aab3b459bee, type: 3}
+  - {fileID: -464564854065543520, guid: 4f7b1875c095d4bbf95d892b7c60c9e6, type: 3}
+  - {fileID: -1114720057938871834, guid: aea4689b8800f40a6bdc75c48da2b765, type: 3}
+  - {fileID: 670715826611952100, guid: 4dc1ad52cc1a14423ac0b227482ef598, type: 3}
+  - {fileID: -5704140589382030676, guid: a399464c2980a4423bce64537c77dc3c, type: 3}
+  - {fileID: 280687831758922899, guid: f7fb5f85822f141658fd6dc2edee7d03, type: 3}
   livesText: {fileID: 370714862}
   winText: {fileID: 0}
 --- !u!4 &1219601279
@@ -649,6 +658,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -670,6 +681,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -828,6 +840,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -849,6 +863,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
