@@ -37,19 +37,35 @@ public class CakeTowerManager : MonoBehaviour
     livesText.text = $"{livesRemaining}";
     SpawnNewBlock();
   }
-  public void CakePlaced()
-  {
-      if (!playing) return;
+public void CakePlaced()
+{
+    if (!playing) return;
 
-      cakesPlaced++;
+    cakesPlaced++;
 
-      if (cakesPlaced >= cakesToWin)
-      {
-          playing = false;
-          winText.text = "You Win!";
-          Debug.Log("You Win!");
-      }
-  }
+    if (cakesPlaced >= cakesToWin)
+    {
+        playing = false;
+
+        // Stop current moving block
+        if (currentBlock != null)
+        {
+            Rigidbody2D rb = currentBlock.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.angularVelocity = 0f;
+                rb.bodyType = RigidbodyType2D.Static;
+            }
+        }
+
+        // Stop ALL physics (optional but clean)
+        Time.timeScale = 0f;
+
+        winText.text = "You Win!";
+        Debug.Log("You Win!");
+    }
+}
 
   private IEnumerator DelayedSpawn() {
     yield return new WaitForSeconds(timeBetweenRounds);
