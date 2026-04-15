@@ -9,7 +9,9 @@ public class CakeTowerManager : MonoBehaviour
   [SerializeField] private Sprite[] cakeSprites;
 
   [SerializeField] private TMPro.TextMeshProUGUI livesText;
-  [SerializeField] private TMPro.TextMeshProUGUI winText; // Optional, if you want to show "You Win!"
+  [SerializeField] private GameObject youWin;
+  [SerializeField] private GameObject youLose;
+
   private int cakesPlaced = 0;
   private int cakesToWin = 6;
 
@@ -41,31 +43,31 @@ public void CakePlaced()
 {
     if (!playing) return;
 
-    cakesPlaced++;
+      cakesPlaced++;
+      Debug.Log("" + cakesPlaced);
 
-    if (cakesPlaced >= cakesToWin)
-    {
-        playing = false;
+      if (cakesPlaced >= cakesToWin)
+      {
+          int scoreVal = 15;
+          GameManager.Instance.SetScore("CakeTower", scoreVal);
+          playing = false;
+          youWin.SetActive(true);
+          Debug.Log("You Win!");
 
-        // Stop current moving block
-        if (currentBlock != null)
-        {
-            Rigidbody2D rb = currentBlock.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.linearVelocity = Vector2.zero;
-                rb.angularVelocity = 0f;
-                rb.bodyType = RigidbodyType2D.Static;
-            }
-        }
+          // Stop current moving block
+          if (currentBlock != null)
+          {
+              Rigidbody2D rb = currentBlock.GetComponent<Rigidbody2D>();
+              if (rb != null)
+              {
+                  rb.linearVelocity = Vector2.zero;
+                  rb.angularVelocity = 0f;
+                  rb.bodyType = RigidbodyType2D.Static;
+              }
+          }
+      }
+  }
 
-        // Stop ALL physics (optional but clean)
-        Time.timeScale = 0f;
-
-        winText.text = "You Win!";
-        Debug.Log("You Win!");
-    }
-}
 
   private IEnumerator DelayedSpawn() {
     yield return new WaitForSeconds(timeBetweenRounds);
@@ -113,6 +115,10 @@ public void CakePlaced()
     if (livesRemaining == 0)
     {
       playing = false;
+      int scoreVal = 0;
+      GameManager.Instance.SetScore("CakeTower", scoreVal);
+      youLose.SetActive(true);
+
     }
   }
 private void SpawnNewBlock() {
@@ -140,6 +146,7 @@ private void SpawnNewBlock() {
     }
 
     blockSpeed += blockSpeedIncrement;
+  }
 }
 
-}
+
