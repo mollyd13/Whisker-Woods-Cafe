@@ -115,9 +115,9 @@ public void CakePlaced()
     if (livesRemaining == 0)
     {
       playing = false;
+      youLose.SetActive(true);
       int scoreVal = 0;
       GameManager.Instance.SetScore("CakeTower", scoreVal);
-      youLose.SetActive(true);
 
     }
   }
