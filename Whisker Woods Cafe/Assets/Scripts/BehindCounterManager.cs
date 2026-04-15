@@ -4,7 +4,7 @@ using UnityEngine;
 public class BehindCounterManager : MonoBehaviour
 {
     [SerializeField] Customer[] customers = new Customer[2];
-    [SerializeField] int currCustomer;
+    [SerializeField] public int currCustomer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CakeTower.unity
     guid: 4d802d72b5a5340d8be14e6db7959caa
+  - enabled: 1
+    path: Assets/Scenes/MissingBoard.unity
+    guid: aaf039f4ad19a4b4bb467d220cf50ae8
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
