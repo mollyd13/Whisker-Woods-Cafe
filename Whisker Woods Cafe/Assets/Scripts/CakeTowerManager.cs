@@ -43,6 +43,7 @@ public class CakeTowerManager : MonoBehaviour
       if (!playing) return;
 
       cakesPlaced++;
+      Debug.Log("" + cakesPlaced);
 
       if (cakesPlaced >= cakesToWin)
       {
@@ -51,8 +52,24 @@ public class CakeTowerManager : MonoBehaviour
           playing = false;
           winText.SetActive(true);
           Debug.Log("You Win!");
+
+          // Stop current moving block
+          if (currentBlock != null)
+          {
+              Rigidbody2D rb = currentBlock.GetComponent<Rigidbody2D>();
+              if (rb != null)
+              {
+                  rb.linearVelocity = Vector2.zero;
+                  rb.angularVelocity = 0f;
+                  rb.bodyType = RigidbodyType2D.Static;
+              }
+          }
+
+          // Stop ALL physics (optional but clean)
+          Time.timeScale = 0f;
       }
   }
+
 
   private IEnumerator DelayedSpawn() {
     yield return new WaitForSeconds(timeBetweenRounds);
@@ -112,6 +129,7 @@ public class CakeTowerManager : MonoBehaviour
     currentBlock.GetComponent<SpriteRenderer>().color = UnityEngine.Random.ColorHSV();
     currentRigidbody = currentBlock.GetComponent<Rigidbody2D>();
     blockSpeed += blockSpeedIncrement;
+  }
 }
 
-}
+
