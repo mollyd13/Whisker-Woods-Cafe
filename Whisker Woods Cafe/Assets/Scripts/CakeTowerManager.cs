@@ -64,9 +64,6 @@ public class CakeTowerManager : MonoBehaviour
                   rb.bodyType = RigidbodyType2D.Static;
               }
           }
-
-          // Stop ALL physics (optional but clean)
-          Time.timeScale = 0f;
       }
   }
 
