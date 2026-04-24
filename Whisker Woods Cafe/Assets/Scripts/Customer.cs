@@ -22,6 +22,8 @@ public class Customer : MonoBehaviour
     private SceneManager sm;
     private BehindCounterManager bcm;
     public bool minigameComplete = false;
+    public AudioSource source;
+    public AudioClip soundEffect;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,6 +33,8 @@ public class Customer : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         charIndex = 0;
         textComponent.text = string.Empty;
+        source = gameObject.GetComponent<AudioSource>();
+        soundEffect = source.GetComponent<AudioClip>();
     }
 
     // Update is called once per frame
@@ -72,6 +76,7 @@ public class Customer : MonoBehaviour
 
         foreach(char c in lines[index].ToCharArray()){
             textComponent.text += c;
+            source.Play();
             yield return new WaitForSeconds(textSpeed);
         }
     }
