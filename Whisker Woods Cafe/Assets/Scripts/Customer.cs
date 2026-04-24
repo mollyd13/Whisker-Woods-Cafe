@@ -10,8 +10,8 @@ public class Customer : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
     public string[] lines;
-    public string iLikeIt;
-    public string iDontLikeIt;
+    public string[] iLikeIt;
+    public string[] iDontLikeIt;
     public string minigame;
     public float textSpeed;
     public int customerIndex = 0;
@@ -54,10 +54,10 @@ public class Customer : MonoBehaviour
             Debug.Log("Minigame score found in GameManager: " + score);
             minigameComplete = true;
             if (score >= 15){
-                lines = new string[] {iLikeIt};
+                lines = iLikeIt;
             }
             else {
-                lines = new string[] {iDontLikeIt};
+                lines = iDontLikeIt;
             }
             GameManager.Instance.ClearScore(minigame);
         }
@@ -97,7 +97,17 @@ public class Customer : MonoBehaviour
 
     void NextCharSprite()
     {
-        charIndex++;
-        sr.sprite = characterSprites[charIndex];
+        if (charIndex >= characterSprites.Length - 1)
+        {
+            charIndex = 0;
+            Debug.Log(charIndex);
+            sr.sprite = characterSprites[charIndex];
+        }
+        else
+        {  
+            charIndex++;
+            Debug.Log(charIndex);
+            sr.sprite = characterSprites[charIndex];
+        }
     }
 }

@@ -495,7 +495,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pink
+  m_text: Peony
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -846,7 +846,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Agent Kibble
+  m_text: Purrlock Holmes
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1366,8 +1366,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customers:
-  - {fileID: 1266590954}
   - {fileID: 1347693995}
+  - {fileID: 1266590954}
   - {fileID: 1357467353}
   currCustomer: 0
 --- !u!1 &1266590952
@@ -1387,7 +1387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1266590953
 Transform:
   m_ObjectHideFlags: 0
@@ -1418,11 +1418,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 264317515}
   lines:
-  - pink cat woohoo
-  - blah
-  - latte
-  iLikeIt: woohoo
-  iDontLikeIt: yucky
+  - "Alright. Let\u2019s see what you\u2019ve got\u2026 "
+  - "If this is boring, I\u2019m leaving. Just so you know. "
+  - "What? Yes, I\u2019m pink. Yes, my name is Peony. Get over it.  "
+  - "\u2026"
+  - 'Oh. That one. The pink cake. '
+  - "Don\u2019t make it weird. Just\u2026 give me that. "
+  - "What? Don\u2019t look so proud. It\u2019s just a cake. "
+  - '...Someone used to get me stuff like this all the time. '
+  - 'Not that I care or anything. Just saying. '
+  - "There was this place\u2026 loud, messy\u2026 smelled like leather and sugar. "
+  - 'Way better than this place. '
+  iLikeIt:
+  - "\u2026Okay."
+  - "That\u2019s actually really good. "
+  - "Don\u2019t get used to compliments. This is a one-time thing. "
+  - 'You got the flavor right. '
+  - "Kinda reminds me of\u2026 "
+  - '...Whatever. You did your job. '
+  - Hey
+  - "If I come back\u2026 don\u2019t mess it up next time. "
+  iDontLikeIt:
+  - '...You serious? '
+  - Wow.
+  - "That\u2019s\u2026 impressively bad. "
+  - "I\u2019ve had better food out of a trash can. And I don\u2019t do that. "
+  - '...They used to make it right every time. '
+  - "Whatever. Try again. Or don\u2019t. I\u2019m not begging. "
   minigame: CakeTower
   textSpeed: 0.05
   customerIndex: 0
@@ -1506,7 +1528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1347693994
 Transform:
   m_ObjectHideFlags: 0
@@ -1537,11 +1559,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 367288720}
   lines:
-  - detective i am
-  - yaya
-  - coffee?
-  iLikeIt: woohoo
-  iDontLikeIt: yucky
+  - "\u2026Ah. You\u2019ve arrived."
+  - 'Step carefully, newcomer. '
+  - 'This place is not as simple as it looks. '
+  - 'I am Purrlock Holmes. '
+  - "Detective, observer\u2026 occasional critic of poor caf\xE9 management. "
+  - "And you \u2013  "
+  - "You\u2019re new here "
+  - "Don\u2019t worry. I\u2019ll make sure you don\u2019t trip over your own paws. "
+  - "Follow me. The caf\xE9 is waiting. "
+  - "This is Whisker Woods Caf\xE9. "
+  - "It may look cozy\u2026 "
+  - 'But every corner has a story hidden in it. '
+  - 'You may have noticed them already. '
+  - 'The wandering ones. '
+  - "They do not all belong here\u2026 "
+  - 'But they all end up here eventually. '
+  - 'Your task is simple. '
+  - Observe.
+  - Understand.
+  - "And when possible\u2026 help them feel seen. "
+  - 'Adoption is not a transaction. '
+  - 'It is recognition. '
+  - "Strange, isn\u2019t it? "
+  - "How many cats arrive here\u2026 \u201Cby accident.\u201D "
+  - 'I have my theories. '
+  - 'But theories are like yarn balls. '
+  - 'They unravel when pulled too hard. '
+  - 'For now, just play your part. '
+  - "The caf\xE9 will test you in subtler ways from here on. "
+  - 'Remember: '
+  - 'Not every cat wants saving. '
+  - 'Some want understanding. '
+  - 'Some want distance. '
+  - 'Some want both at the same time. '
+  - Let's test your skills.
+  iLikeIt:
+  - Not bad...
+  - Remember what I told you.
+  - I'll be back when the time is right.
+  iDontLikeIt:
+  - You can do better than this.
+  - 'Refine your skills and prepare for your first real customer. '
+  - I'll be back when the time is right.
   minigame: Matching
   textSpeed: 0.05
   customerIndex: 0
@@ -1717,8 +1777,10 @@ MonoBehaviour:
   - hello
   - 010101010000010010101001111111010100000101010111
   - Latte
-  iLikeIt: Not bad
-  iDontLikeIt: Bad
+  iLikeIt:
+  - Yay!
+  iDontLikeIt:
+  - Boo!
   minigame: CoffeeCatching
   textSpeed: 0.05
   customerIndex: 0
