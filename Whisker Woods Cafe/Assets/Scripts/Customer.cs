@@ -24,6 +24,7 @@ public class Customer : MonoBehaviour
     public bool minigameComplete = false;
     public AudioSource source;
     public AudioClip soundEffect;
+    public GameObject tip;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -63,6 +64,7 @@ public class Customer : MonoBehaviour
             else {
                 lines = iDontLikeIt;
             }
+            tip.SetActive(true);
             GameManager.Instance.ClearScore(minigame);
         }
         index = 0;

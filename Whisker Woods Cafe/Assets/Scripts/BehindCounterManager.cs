@@ -20,6 +20,11 @@ public class BehindCounterManager : MonoBehaviour
         if (GameManager.Instance != null && GameManager.Instance.lastCustomerIndex >= 0)
         {
             currCustomer = GameManager.Instance.lastCustomerIndex;
+            // restore given tips
+            for (int i = 0; i <= GameManager.Instance.lastCustomerIndex; i++)
+            {
+                customers[i].GetComponent<Customer>().tip.SetActive(true);
+            }
             GameManager.Instance.lastCustomerIndex = -1; // clear after restoring
         }
         else
